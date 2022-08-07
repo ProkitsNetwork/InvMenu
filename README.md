@@ -1,9 +1,5 @@
 # InvMenu
 **InvMenu is a PocketMine-MP virion that eases creating and managing fake inventories!**
-[![](https://poggit.pmmp.io/shield.state/InvMenu)](https://poggit.pmmp.io/p/InvMenu)
-
-## Installation
-You can get the compiled .phar file on poggit by clicking [here](https://poggit.pmmp.io/ci/Muqsit/InvMenu/~).
 
 ## Usage
 InvMenu supports creating a GUI out of any kind of `Inventory`.
