@@ -29,7 +29,7 @@ final class PlayerNetwork {
 	private Closure $container_open_callback;
 
 	private ?NetworkStackLatencyEntry $current = null;
-	private int $graphic_wait_duration = 200;
+	private int $graphic_wait_duration = 5;
 
 	/** @var SplQueue<NetworkStackLatencyEntry> */
 	private SplQueue $queue;
