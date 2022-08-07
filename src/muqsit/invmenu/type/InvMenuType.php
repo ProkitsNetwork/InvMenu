@@ -9,7 +9,7 @@ use muqsit\invmenu\type\graphic\InvMenuGraphic;
 use pocketmine\inventory\Inventory;
 use pocketmine\player\Player;
 
-interface InvMenuType{
+interface InvMenuType {
 
 	public function createGraphic(InvMenu $menu, Player $player) : ?InvMenuGraphic;
 

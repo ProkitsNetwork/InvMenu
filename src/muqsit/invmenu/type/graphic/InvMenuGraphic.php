@@ -8,7 +8,7 @@ use muqsit\invmenu\type\graphic\network\InvMenuGraphicNetworkTranslator;
 use pocketmine\inventory\Inventory;
 use pocketmine\player\Player;
 
-interface InvMenuGraphic{
+interface InvMenuGraphic {
 
 	public function send(Player $player, ?string $name) : void;
 

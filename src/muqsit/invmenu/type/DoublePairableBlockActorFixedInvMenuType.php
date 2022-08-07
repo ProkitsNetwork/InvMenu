@@ -16,32 +16,33 @@ use pocketmine\block\tile\Chest;
 use pocketmine\inventory\Inventory;
 use pocketmine\player\Player;
 
-final class DoublePairableBlockActorFixedInvMenuType implements FixedInvMenuType{
+final class DoublePairableBlockActorFixedInvMenuType implements FixedInvMenuType {
 
 	public function __construct(
-		private Block $block,
-		private int $size,
-		private string $tile_id,
+		private Block                            $block,
+		private int                              $size,
+		private string                           $tile_id,
 		private ?InvMenuGraphicNetworkTranslator $network_translator = null,
-		private int $animation_duration = 0
-	){}
+		private int                              $animation_duration = 0
+	) {
+	}
 
-	public function getSize() : int{
+	public function getSize() : int {
 		return $this->size;
 	}
 
-	public function createGraphic(InvMenu $menu, Player $player) : ?InvMenuGraphic{
+	public function createGraphic(InvMenu $menu, Player $player) : ?InvMenuGraphic {
 		$origin = $player->getPosition()->addVector(InvMenuTypeHelper::getBehindPositionOffset($player))->floor();
-		if(!InvMenuTypeHelper::isValidYCoordinate($origin->y)){
+		if (!InvMenuTypeHelper::isValidYCoordinate($origin->y)) {
 			return null;
 		}
 
 		$graphics = [];
 		$menu_name = $menu->getName();
-		foreach([
-			[$origin, $origin->east()],
-			[$origin->east(), $origin]
-		] as [$origin_pos, $pair_pos]){
+		foreach ([
+			         [$origin, $origin->east()],
+			         [$origin->east(), $origin],
+		         ] as [$origin_pos, $pair_pos]) {
 			$graphics[] = new BlockActorInvMenuGraphic(
 				$this->block,
 				$origin_pos,
@@ -56,7 +57,7 @@ final class DoublePairableBlockActorFixedInvMenuType implements FixedInvMenuType
 		return count($graphics) > 1 ? new MultiBlockInvMenuGraphic($graphics) : $graphics[0];
 	}
 
-	public function createInventory() : Inventory{
+	public function createInventory() : Inventory {
 		return new InvMenuInventory($this->size);
 	}
 }

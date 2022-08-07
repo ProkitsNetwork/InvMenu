@@ -9,7 +9,7 @@ use pocketmine\inventory\transaction\InventoryTransaction;
 use pocketmine\item\Item;
 use pocketmine\player\Player;
 
-interface InvMenuTransaction{
+interface InvMenuTransaction {
 
 	public function getPlayer() : Player;
 
@@ -20,16 +20,16 @@ interface InvMenuTransaction{
 	/**
 	 * Returns the item that was clicked / taken out of the inventory.
 	 *
-	 * @link InvMenuTransaction::getOut()
 	 * @return Item
+	 * @link InvMenuTransaction::getOut()
 	 */
 	public function getItemClicked() : Item;
 
 	/**
 	 * Returns the item that an item was clicked with / placed in the inventory.
 	 *
-	 * @link InvMenuTransaction::getIn()
 	 * @return Item
+	 * @link InvMenuTransaction::getIn()
 	 */
 	public function getItemClickedWith() : Item;
 
