@@ -30,7 +30,7 @@ final class BlockInvMenuGraphic implements PositionedInvMenuGraphic {
 	}
 
 	public function send(Player $player, ?string $name) : void {
-		$player->getNetworkSession()->sendDataPacket(UpdateBlockPacket::create(BlockPosition::fromVector3($this->position), RuntimeBlockMapping::getInstance()->getMapping($player->getNetworkSession()->getProtocolId())->toRuntimeId($this->block->getFullId()), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL));
+		$player->getNetworkSession()->sendDataPacket(UpdateBlockPacket::create(BlockPosition::fromVector3($this->position), RuntimeBlockMapping::getInstance()->toRuntimeId($this->block->getFullId(), $player->getNetworkSession()->getProtocolId()), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL));
 	}
 
 	public function sendInventory(Player $player, Inventory $inventory) : bool {
@@ -41,8 +41,8 @@ final class BlockInvMenuGraphic implements PositionedInvMenuGraphic {
 		$network = $player->getNetworkSession();
 		$world = $player->getWorld();
 		$block = $world->getBlockAt($this->position->x, $this->position->y, $this->position->z);
-		$mapping = RuntimeBlockMapping::getInstance()->getMapping($network->getProtocolId());
-		$network->sendDataPacket(UpdateBlockPacket::create(BlockPosition::fromVector3($this->position), $mapping->toRuntimeId($block->getFullId()), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL), true);
+		$mapping = RuntimeBlockMapping::getInstance();
+		$network->sendDataPacket(UpdateBlockPacket::create(BlockPosition::fromVector3($this->position), $mapping->toRuntimeId($block->getFullId(), $network->getProtocolId()), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL), true);
 
 		$tile = $world->getTileAt($this->position->x, $this->position->y, $this->position->z);
 		if ($tile instanceof Spawnable) {
