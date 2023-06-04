@@ -1,21 +1,15 @@
 {
     "name": "prokits-network/inv-menu",
-    "description": "InvMenu is a PocketMine-MP virion that eases creating and managing fake inventories!",
+    "description": "A PocketMine-MP virion to create and manage virtual inventories!",
     "type": "library",
-    "license": "GPL-3.0-only",
+    "license": "GPL-3.0",
     "autoload": {
-        "psr-4": {
-            "": [
-                "src"
-            ]
-        }
+        "classmap": ["src"]
     },
     "authors": [
         {
-            "name": "Blackjack200",
-            "email": "lx826444126@gmail.com"
+            "name": "Muqsit",
+            "email": "hackhack05@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
 }

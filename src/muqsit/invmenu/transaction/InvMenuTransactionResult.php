@@ -7,17 +7,20 @@ namespace muqsit\invmenu\transaction;
 use Closure;
 use pocketmine\player\Player;
 
-final class InvMenuTransactionResult {
+final class InvMenuTransactionResult{
 
 	/** @var (Closure(Player) : void)|null */
-	private ?Closure $post_transaction_callback = null;
+	public ?Closure $post_transaction_callback = null;
 
 	public function __construct(
-		private bool $cancelled
-	) {
-	}
+		readonly public bool $cancelled
+	){}
 
-	public function isCancelled() : bool {
+	/**
+	 * @deprecated Access {@see InvMenuTransactionResult::$cancelled} directly
+	 * @return bool
+	 */
+	public function isCancelled() : bool{
 		return $this->cancelled;
 	}
 
@@ -30,12 +33,16 @@ final class InvMenuTransactionResult {
 	 * @param (Closure(Player) : void)|null $callback
 	 * @return self
 	 */
-	public function then(?Closure $callback) : self {
+	public function then(?Closure $callback) : self{
 		$this->post_transaction_callback = $callback;
 		return $this;
 	}
 
-	public function getPostTransactionCallback() : ?Closure {
+	/**
+	 * @deprecated Access {@see InvMenuTransactionResult::$post_transaction_callback} directly
+	 * @return (Closure(Player) : void)|null
+	 */
+	public function getPostTransactionCallback() : ?Closure{
 		return $this->post_transaction_callback;
 	}
 }

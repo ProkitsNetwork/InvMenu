@@ -11,19 +11,19 @@ use muqsit\invmenu\type\graphic\PositionedInvMenuGraphic;
 use pocketmine\network\mcpe\protocol\ContainerOpenPacket;
 use pocketmine\network\mcpe\protocol\types\BlockPosition;
 
-final class BlockInvMenuGraphicNetworkTranslator implements InvMenuGraphicNetworkTranslator {
+final class BlockInvMenuGraphicNetworkTranslator implements InvMenuGraphicNetworkTranslator{
 
-	private function __construct() {
-	}
-
-	public static function instance() : self {
+	public static function instance() : self{
 		static $instance = null;
 		return $instance ??= new self();
 	}
 
-	public function translate(PlayerSession $session, InvMenuInfo $current, ContainerOpenPacket $packet) : void {
+	private function __construct(){
+	}
+
+	public function translate(PlayerSession $session, InvMenuInfo $current, ContainerOpenPacket $packet) : void{
 		$graphic = $current->graphic;
-		if (!($graphic instanceof PositionedInvMenuGraphic)) {
+		if(!($graphic instanceof PositionedInvMenuGraphic)){
 			throw new InvalidArgumentException("Expected " . PositionedInvMenuGraphic::class . ", got " . get_class($graphic));
 		}
 
